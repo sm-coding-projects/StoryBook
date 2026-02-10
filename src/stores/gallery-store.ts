@@ -85,10 +85,21 @@ export const useGalleryStore = create<GalleryState & GalleryActions>(
 
     toggleFavorite: (photoId) => {
       const favorites = new Set(get().favorites);
-      if (favorites.has(photoId)) {
+      const wasFavorite = favorites.has(photoId);
+      if (wasFavorite) {
         favorites.delete(photoId);
+        fetch("/api/favorites", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ photoId }),
+        });
       } else {
         favorites.add(photoId);
+        fetch("/api/favorites", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ photoId }),
+        });
       }
       set({ favorites });
     },

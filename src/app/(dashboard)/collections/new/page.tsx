@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft } from "lucide-react";
+import { toast } from "sonner";
 
 export default function NewCollectionPage() {
   const router = useRouter();
@@ -36,6 +37,7 @@ export default function NewCollectionPage() {
         return;
       }
 
+      toast.success("Collection created!");
       router.push(`/collections/${data.gallery.id}`);
     } catch {
       setError("Something went wrong");

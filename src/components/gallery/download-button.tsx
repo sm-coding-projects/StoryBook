@@ -31,15 +31,17 @@ export function DownloadButton({
     try {
       const res = await fetch(`/api/downloads/${photoId}`);
       if (!res.ok) throw new Error("Download failed");
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
+      const data = await res.json();
+      const fileRes = await fetch(data.url);
+      const blob = await fileRes.blob();
+      const blobUrl = URL.createObjectURL(blob);
       const a = document.createElement("a");
-      a.href = url;
-      a.download = "";
+      a.href = blobUrl;
+      a.download = data.filename || "photo.jpg";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      URL.revokeObjectURL(blobUrl);
     } catch {
       // Could show a toast here
     } finally {

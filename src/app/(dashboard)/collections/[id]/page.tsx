@@ -18,6 +18,7 @@ import {
   X,
   Images,
 } from "lucide-react";
+import { toast } from "sonner";
 
 interface Photo {
   id: string;
@@ -84,6 +85,10 @@ export default function CollectionDetailPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["gallery", id] });
       setSelectedPhotos(new Set());
+      toast.success("Photos deleted");
+    },
+    onError: () => {
+      toast.error("Failed to delete photos");
     },
   });
 
@@ -114,7 +119,7 @@ export default function CollectionDetailPage() {
 
         try {
           // Get presigned URL
-          const presignRes = await fetch(`/api/upload/presign`, {
+          const presignRes = await fetch(`/api/uploads/presigned`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -124,7 +129,7 @@ export default function CollectionDetailPage() {
             }),
           });
           if (!presignRes.ok) throw new Error("Presign failed");
-          const { uploadUrl, key } = await presignRes.json();
+          const { url: uploadUrl, key } = await presignRes.json();
 
           // Upload to S3
           await fetch(uploadUrl, {
@@ -134,7 +139,7 @@ export default function CollectionDetailPage() {
           });
 
           // Confirm upload
-          await fetch(`/api/upload/confirm`, {
+          await fetch(`/api/uploads/complete`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ key, collectionId, filename: file.name }),
@@ -155,6 +160,9 @@ export default function CollectionDetailPage() {
       }
 
       queryClient.invalidateQueries({ queryKey: ["gallery", id] });
+      const doneCount = fileArray.length;
+      const errorCount = fileArray.length - uploads.filter((u) => u.status === "done").length;
+      toast.success(`${doneCount} photo${doneCount > 1 ? "s" : ""} uploaded`);
     },
     [gallery, id, queryClient]
   );

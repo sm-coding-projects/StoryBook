@@ -5,6 +5,7 @@ import { GalleryView } from "@/components/gallery/gallery-view";
 import { Lightbox } from "@/components/gallery/lightbox";
 import { Slideshow } from "@/components/gallery/slideshow";
 import { PasswordGate } from "@/components/gallery/password-gate";
+import { useGalleryStore } from "@/stores/gallery-store";
 import type { CollectionWithPhotos } from "@/types";
 
 interface GalleryData {
@@ -82,6 +83,41 @@ export function GalleryPageClient({ slug }: { slug: string }) {
     );
   }
 
+  // Initialize favorites from DB data
+  useEffect(() => {
+    if (gallery?.collections) {
+      const favIds = gallery.collections
+        .flatMap((c) => c.photos)
+        .filter((p) => p.isFavorite)
+        .map((p) => p.id);
+      if (favIds.length > 0) {
+        const store = useGalleryStore.getState();
+        const favSet = new Set(favIds);
+        useGalleryStore.setState({ favorites: favSet });
+      }
+    }
+  }, [gallery?.collections]);
+
+  const handleDownload = useCallback(async (photoId: string) => {
+    try {
+      const res = await fetch(`/api/downloads/${photoId}`);
+      if (!res.ok) return;
+      const data = await res.json();
+      const fileRes = await fetch(data.url);
+      const blob = await fileRes.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = blobUrl;
+      a.download = data.filename || "photo.jpg";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(blobUrl);
+    } catch {
+      // silent
+    }
+  }, []);
+
   if (gallery.isPasswordProtected && !gallery.collections) {
     return (
       <PasswordGate
@@ -108,7 +144,7 @@ export function GalleryPageClient({ slug }: { slug: string }) {
         getPhotoUrl={getPhotoUrls}
       />
 
-      <Lightbox />
+      <Lightbox onDownload={handleDownload} />
       <Slideshow />
 
       {/* Footer */}

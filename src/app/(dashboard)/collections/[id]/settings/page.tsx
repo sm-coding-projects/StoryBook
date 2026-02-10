@@ -12,6 +12,7 @@ import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft } from "lucide-react";
+import { toast } from "sonner";
 
 interface GallerySettings {
   id: string;
@@ -73,6 +74,10 @@ export default function CollectionSettingsPage() {
       queryClient.invalidateQueries({ queryKey: ["galleries"] });
       setSaved(true);
       setTimeout(() => setSaved(false), 2000);
+      toast.success("Settings saved");
+    },
+    onError: (err) => {
+      toast.error(err.message || "Failed to save settings");
     },
   });
 
@@ -83,7 +88,11 @@ export default function CollectionSettingsPage() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["galleries"] });
+      toast.success("Collection deleted");
       router.push("/");
+    },
+    onError: () => {
+      toast.error("Failed to delete collection");
     },
   });
 

@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, Copy, Check, Send, ExternalLink } from "lucide-react";
+import { toast } from "sonner";
 
 async function fetchGallery(id: string) {
   const res = await fetch(`/api/galleries/${id}`);
@@ -56,9 +57,12 @@ export default function SharePage() {
         setEmail("");
         setMessage("");
         setTimeout(() => setSent(false), 3000);
+        toast.success("Invitation sent!");
+      } else {
+        toast.error("Failed to send invitation");
       }
     } catch {
-      // silent fail
+      toast.error("Failed to send invitation");
     }
     setSending(false);
   }
