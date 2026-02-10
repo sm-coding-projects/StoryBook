@@ -7,12 +7,19 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { toast } from "sonner";
 
 export default function SettingsPage() {
   const { data: session, update } = useSession();
   const [name, setName] = useState("");
   const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
+
+  // Password change state
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [changingPassword, setChangingPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
 
   useEffect(() => {
     if (session?.user?.name) {
@@ -31,13 +38,52 @@ export default function SettingsPage() {
       });
       if (res.ok) {
         await update({ name });
-        setSaved(true);
-        setTimeout(() => setSaved(false), 2000);
+        toast.success("Profile updated");
+      } else {
+        toast.error("Failed to update profile");
       }
     } catch {
-      // silent
+      toast.error("Failed to update profile");
     }
     setSaving(false);
+  }
+
+  async function handlePasswordChange(e: React.FormEvent) {
+    e.preventDefault();
+    setPasswordError("");
+
+    if (newPassword.length < 8) {
+      setPasswordError("New password must be at least 8 characters");
+      return;
+    }
+
+    if (newPassword !== confirmNewPassword) {
+      setPasswordError("New passwords do not match");
+      return;
+    }
+
+    setChangingPassword(true);
+    try {
+      const res = await fetch("/api/user/password", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ currentPassword, newPassword }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setPasswordError(data.error || "Failed to change password");
+      } else {
+        toast.success("Password changed successfully");
+        setCurrentPassword("");
+        setNewPassword("");
+        setConfirmNewPassword("");
+      }
+    } catch {
+      setPasswordError("Something went wrong");
+    }
+    setChangingPassword(false);
   }
 
   const initials = name
@@ -91,7 +137,64 @@ export default function SettingsPage() {
             </div>
 
             <Button type="submit" disabled={saving}>
-              {saved ? "Saved!" : saving ? "Saving..." : "Save Changes"}
+              {saving ? "Saving..." : "Save Changes"}
+            </Button>
+          </form>
+        </div>
+
+        <Separator />
+
+        {/* Change Password */}
+        <div>
+          <h2 className="text-lg font-medium mb-2">Change Password</h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            Update your password to keep your account secure.
+          </p>
+
+          <form onSubmit={handlePasswordChange} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="currentPassword">Current password</Label>
+              <Input
+                id="currentPassword"
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="newPassword">New password</Label>
+              <Input
+                id="newPassword"
+                type="password"
+                placeholder="At least 8 characters"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                required
+                minLength={8}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="confirmNewPassword">Confirm new password</Label>
+              <Input
+                id="confirmNewPassword"
+                type="password"
+                placeholder="Re-enter your new password"
+                value={confirmNewPassword}
+                onChange={(e) => setConfirmNewPassword(e.target.value)}
+                required
+                minLength={8}
+              />
+            </div>
+
+            {passwordError && (
+              <p className="text-sm text-destructive">{passwordError}</p>
+            )}
+
+            <Button type="submit" disabled={changingPassword}>
+              {changingPassword ? "Changing..." : "Change Password"}
             </Button>
           </form>
         </div>
