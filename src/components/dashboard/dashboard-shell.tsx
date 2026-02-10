@@ -119,10 +119,10 @@ export function DashboardShell({
     <div className="flex h-screen overflow-hidden">
       {/* Desktop sidebar */}
       <aside className="hidden md:flex w-64 flex-col border-r bg-background">
-        <div className="flex h-14 items-center gap-2 border-b px-4">
+        <Link href="/" className="flex h-14 items-center gap-2 border-b px-4 hover:bg-accent transition-colors">
           <Camera className="size-5" strokeWidth={1.5} />
           <span className="text-lg font-light tracking-tight">StoryBook</span>
-        </div>
+        </Link>
 
         <div className="flex-1 overflow-auto p-4">
           <Link href="/collections/new">
@@ -167,10 +167,10 @@ export function DashboardShell({
               </div>
             </SheetContent>
           </Sheet>
-          <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <Camera className="size-5" strokeWidth={1.5} />
             <span className="text-lg font-light tracking-tight">StoryBook</span>
-          </div>
+          </Link>
         </header>
 
         <main className="flex-1 overflow-auto">
