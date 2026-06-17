@@ -21,7 +21,19 @@ Create gorgeous, shareable photo galleries for your clients — with proofing (f
 
 ## Screenshots
 
-> Captured from the running app. Dashboard, collection editor, and client-gallery views will be added here as demo data is populated.
+> Captured from the running app.
+
+**Photographer dashboard** — manage all your client collections
+
+![Collections dashboard](docs/screenshots/dashboard.png)
+
+**Collection view** — drag-and-drop upload, organize, share, and publish
+
+![Collection detail](docs/screenshots/collection.png)
+
+**Account settings** — profile and password management
+
+![Account settings](docs/screenshots/settings.png)
 
 **Create an account**
 
@@ -29,9 +41,13 @@ Create gorgeous, shareable photo galleries for your clients — with proofing (f
 
 ### Responsive on every device
 
-The desktop two-panel layout collapses to a clean, single-column flow on mobile — no overlapping text, boxes, or buttons.
+The desktop layout collapses to a clean, single-column flow on mobile — the sidebar becomes a slide-in menu and headers stack instead of overlapping text, boxes, or buttons.
 
-<img src="docs/screenshots/login-mobile.png" alt="StoryBook sign-in on mobile" width="320" />
+<p>
+  <img src="docs/screenshots/dashboard-mobile.png" alt="StoryBook dashboard on mobile" width="300" />
+  &nbsp;
+  <img src="docs/screenshots/login-mobile.png" alt="StoryBook sign-in on mobile" width="300" />
+</p>
 
 ## Tech Stack
 
