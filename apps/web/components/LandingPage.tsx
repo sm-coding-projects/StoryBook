@@ -24,11 +24,11 @@ export const LandingPage: React.FC = () => {
       <div className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
       {/* Navigation */}
-      <nav className="relative z-10 flex items-center justify-between px-8 py-10 max-w-[1440px] mx-auto">
+      <nav className="relative z-10 flex items-center justify-between px-6 py-6 sm:px-8 sm:py-10 max-w-[1440px] mx-auto">
         <div className="text-xl font-bold tracking-[-0.04em] uppercase">
           StoryBook
         </div>
-        <div className="flex items-center space-x-12 text-[13px] font-medium tracking-wider uppercase">
+        <div className="flex items-center gap-5 sm:gap-0 sm:space-x-12 text-[13px] font-medium tracking-wider uppercase">
           <Link
             href="/auth/login"
             className="flex items-center gap-2 text-[#666] hover:text-black transition-colors"
@@ -45,7 +45,7 @@ export const LandingPage: React.FC = () => {
       </nav>
 
       {/* Hero Section */}
-      <main className="relative z-10 max-w-[1440px] mx-auto px-8 pt-24 pb-40">
+      <main className="relative z-10 max-w-[1440px] mx-auto px-6 pt-12 pb-24 sm:px-8 sm:pt-24 sm:pb-40">
         <div className="grid grid-cols-12 gap-8">
           <div className="col-span-12 lg:col-span-8">
             <motion.div
@@ -53,14 +53,14 @@ export const LandingPage: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h1 className="text-[12vw] lg:text-[10vw] font-bold tracking-[-0.06em] leading-[0.85] mb-12 uppercase">
+              <h1 className="text-[18vw] sm:text-[12vw] lg:text-[10vw] font-bold tracking-[-0.06em] leading-[0.85] mb-8 sm:mb-12 uppercase">
                 Story<br />Book
               </h1>
 
-              <div className="h-[1px] w-full bg-[#E5E5E5] mb-12" />
+              <div className="h-[1px] w-full bg-[#E5E5E5] mb-8 sm:mb-12" />
 
               <div className="max-w-xl">
-                <p className="text-2xl lg:text-3xl font-light text-[#666] leading-snug tracking-tight mb-16">
+                <p className="text-2xl lg:text-3xl font-light text-[#666] leading-snug tracking-tight mb-10 sm:mb-16">
                   A high-performance digital sanctuary for photographers to deliver, proof, and archive visual narratives.
                 </p>
 
@@ -80,7 +80,7 @@ export const LandingPage: React.FC = () => {
             </motion.div>
           </div>
 
-          <div className="col-span-12 lg:col-span-4 mt-20 lg:mt-0 flex flex-col justify-end border-l border-[#E5E5E5] pl-8">
+          <div className="col-span-12 lg:col-span-4 mt-12 lg:mt-0 flex flex-col justify-end border-t lg:border-t-0 lg:border-l border-[#E5E5E5] pt-12 lg:pt-0 lg:pl-8">
             <div className="space-y-12">
               <div>
                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#999] mb-4 block">01 / Proofing</span>
@@ -104,10 +104,10 @@ export const LandingPage: React.FC = () => {
       <div className="absolute -top-[10%] -left-[5%] w-[40%] h-[40%] rounded-full bg-gradient-to-br from-[#F5F5F5] to-transparent blur-3xl opacity-30 pointer-events-none" />
 
       {/* Footer Divider */}
-      <footer className="relative z-10 border-t border-[#E5E5E5] py-12 px-8">
-        <div className="max-w-[1440px] mx-auto flex justify-between items-center text-[10px] font-bold uppercase tracking-[0.2em] text-[#999]">
+      <footer className="relative z-10 border-t border-[#E5E5E5] py-8 px-6 sm:py-12 sm:px-8">
+        <div className="max-w-[1440px] mx-auto flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center text-[10px] font-bold uppercase tracking-[0.2em] text-[#999]">
           <div>&copy; 2026 StoryBook Systems</div>
-          <div className="flex gap-8">
+          <div className="flex gap-6 sm:gap-8">
             <a href="#" className="hover:text-black transition-colors">Privacy</a>
             <a href="#" className="hover:text-black transition-colors">Terms</a>
             <a href="#" className="hover:text-black transition-colors">Contact</a>

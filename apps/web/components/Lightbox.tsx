@@ -38,8 +38,8 @@ export const Lightbox: React.FC<LightboxProps> = ({
         onClick={onClose}
       >
         {/* Controls */}
-        <div className="absolute top-0 left-0 right-0 p-4 flex justify-between items-center z-10">
-          <div className="flex space-x-4">
+        <div className="absolute top-0 left-0 right-0 p-3 sm:p-4 flex justify-between items-center z-10">
+          <div className="flex space-x-2 sm:space-x-4">
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -72,9 +72,9 @@ export const Lightbox: React.FC<LightboxProps> = ({
             e.stopPropagation();
             onPrev();
           }}
-          className="absolute left-4 p-4 text-white/30 hover:text-white transition-colors z-10"
+          className="absolute left-1 sm:left-4 p-2 sm:p-4 text-white/30 hover:text-white transition-colors z-10"
         >
-          <ChevronLeft size={48} />
+          <ChevronLeft className="w-8 h-8 sm:w-12 sm:h-12" />
         </button>
 
         <button
@@ -82,9 +82,9 @@ export const Lightbox: React.FC<LightboxProps> = ({
             e.stopPropagation();
             onNext();
           }}
-          className="absolute right-4 p-4 text-white/30 hover:text-white transition-colors z-10"
+          className="absolute right-1 sm:right-4 p-2 sm:p-4 text-white/30 hover:text-white transition-colors z-10"
         >
-          <ChevronRight size={48} />
+          <ChevronRight className="w-8 h-8 sm:w-12 sm:h-12" />
         </button>
 
         {/* Image Container */}
@@ -102,7 +102,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
             alt={photo.alt}
             className="w-full h-full object-contain shadow-[0_0_100px_rgba(0,0,0,0.5)]"
           />
-          <div className="absolute -bottom-10 left-0 text-white/40 text-[10px] font-black tracking-[0.3em] uppercase">
+          <div className="absolute -bottom-10 left-0 right-0 text-white/40 text-[10px] font-black tracking-[0.3em] uppercase truncate">
             {photo.alt}
           </div>
         </motion.div>

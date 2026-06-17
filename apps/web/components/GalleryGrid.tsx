@@ -32,7 +32,7 @@ export const GalleryGrid: React.FC<GalleryGridProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {title && (
-        <h2 className="text-2xl font-light tracking-widest uppercase text-center mb-16 text-gray-800 border-b border-gray-100 pb-8">
+        <h2 className="text-2xl font-light tracking-widest uppercase text-center mb-8 sm:mb-16 text-gray-800 border-b border-gray-100 pb-6 sm:pb-8">
           {title}
         </h2>
       )}

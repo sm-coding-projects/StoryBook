@@ -33,26 +33,26 @@ export default async function ClientGalleriesPage() {
   return (
     <div className="min-h-screen bg-white">
       <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-[#E5E5E5]">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="flex justify-between items-center h-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="flex justify-between items-center gap-3 h-20">
             <span className="text-sm font-black tracking-[-0.04em] uppercase text-black">StoryBook</span>
-            <div className="flex items-center gap-6">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#999]">Your Galleries</span>
+            <div className="flex items-center gap-3 sm:gap-6">
+              <span className="hidden sm:inline text-[10px] font-black uppercase tracking-[0.2em] text-[#999]">Your Galleries</span>
               <LogoutButton />
             </div>
           </div>
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-8 py-16">
-        <h1 className="text-4xl font-light tracking-tight mb-12 uppercase text-center">Your Galleries</h1>
+      <main className="max-w-6xl mx-auto px-4 sm:px-8 py-10 sm:py-16">
+        <h1 className="text-3xl sm:text-4xl font-light tracking-tight mb-8 sm:mb-12 uppercase text-center">Your Galleries</h1>
 
         {items.length === 0 ? (
           <p className="text-center py-24 text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">
             No galleries yet — ask your photographer for an invite link
           </p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
             {items.map((g) => (
               <Link key={g.id} href={`/gallery/${g.id}`} className="group block">
                 <div className="aspect-[4/5] relative overflow-hidden bg-gray-100 mb-6">

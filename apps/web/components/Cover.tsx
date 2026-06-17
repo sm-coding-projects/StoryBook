@@ -35,11 +35,12 @@ export const Cover: React.FC<CoverProps> = ({ onEnter, title, date, coverImage }
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.8 }}
+          className="w-full max-w-3xl"
         >
           <span className="text-white/80 uppercase tracking-[0.4em] text-xs sm:text-sm mb-4 block font-light">
             Our Wedding Day
           </span>
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl text-white font-light tracking-tight mb-6">
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl text-white font-light tracking-tight mb-6 break-words">
             {title}
           </h1>
           <p className="text-white/70 text-lg sm:text-xl font-light tracking-widest mb-12">

@@ -160,7 +160,7 @@ export const UploadZone: React.FC<UploadZoneProps> = ({ galleryId, onComplete })
           setIsDragging(false);
           handleFiles(e.dataTransfer.files);
         }}
-        className={`relative border-2 border-dashed rounded-2xl p-12 text-center transition-all ${
+        className={`relative border-2 border-dashed rounded-2xl p-6 sm:p-8 md:p-12 text-center transition-all ${
           isDragging ? 'border-black bg-gray-50' : 'border-gray-200 hover:border-gray-300'
         }`}
       >
@@ -227,7 +227,7 @@ export const UploadZone: React.FC<UploadZoneProps> = ({ galleryId, onComplete })
 
                 <button
                   onClick={() => removeUpload(upload.id)}
-                  className="p-1.5 text-gray-400 hover:text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="p-1.5 text-gray-400 hover:text-gray-600 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
                 >
                   <X size={16} />
                 </button>
