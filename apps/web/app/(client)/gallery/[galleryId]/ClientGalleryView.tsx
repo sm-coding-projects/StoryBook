@@ -122,15 +122,15 @@ export function ClientGalleryView({
   return (
     <div className="min-h-screen bg-white">
       <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-[#E5E5E5]">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="flex justify-between items-center gap-3 h-20 min-w-0">
+            <div className="flex items-center shrink-0">
               <span className="text-sm font-black tracking-[-0.04em] uppercase text-black">
                 StoryBook
               </span>
             </div>
-            <div className="flex items-center gap-6">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#999]">
+            <div className="flex items-center gap-3 sm:gap-6 min-w-0">
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#999] truncate">
                 {isSubmitted ? 'Selection Submitted' : 'Verified Client Access'}
               </span>
               <LogoutButton />
@@ -155,10 +155,10 @@ export function ClientGalleryView({
         />
 
         {!isSubmitted && (
-          <div className="fixed bottom-8 right-8 z-50">
+          <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50">
             <button
               onClick={handleSubmit}
-              className="bg-black text-white px-8 py-4 rounded-full shadow-2xl flex items-center gap-2 hover:scale-105 transition-transform uppercase text-xs font-bold tracking-widest"
+              className="bg-black text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full shadow-2xl flex items-center gap-2 hover:scale-105 transition-transform uppercase text-xs font-bold tracking-widest"
             >
               <ShieldCheck size={20} />
               Submit Final Selection ({optimisticFavorites.size})
@@ -170,7 +170,7 @@ export function ClientGalleryView({
       {(isOwner || userRole === 'photographer') && (
         <button
           onClick={() => router.push('/admin/galleries')}
-          className="fixed bottom-8 left-8 p-3 bg-gray-100 text-gray-500 rounded-full hover:bg-black hover:text-white transition-all shadow-lg"
+          className="fixed bottom-4 left-4 sm:bottom-8 sm:left-8 p-3 bg-gray-100 text-gray-500 rounded-full hover:bg-black hover:text-white transition-all shadow-lg"
           title="Back to Admin"
         >
           <LogOut size={20} />

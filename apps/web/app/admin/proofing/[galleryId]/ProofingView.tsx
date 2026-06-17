@@ -110,26 +110,27 @@ export function ProofingView({ gallery, photos, favorites, submissions, exports,
 
   return (
     <div className="max-w-6xl mx-auto">
-      <div className="flex items-center gap-6 mb-12 border-b border-gray-200 pb-8">
-        <button
-          onClick={() => router.push(`/admin/editor/${gallery.id}`)}
-          className="p-2 hover:bg-white transition-colors"
-        >
-          <ChevronRight size={24} className="rotate-180" />
-        </button>
-        <h2 className="text-3xl font-bold uppercase tracking-tight">Review / {gallery.title}</h2>
-        <div className="flex-1" />
-        <div className="flex gap-4">
+      <div className="flex flex-col gap-4 mb-12 border-b border-gray-200 pb-8 md:flex-row md:items-center md:gap-6">
+        <div className="flex items-center gap-4 min-w-0 md:gap-6 md:flex-1">
+          <button
+            onClick={() => router.push(`/admin/editor/${gallery.id}`)}
+            className="p-2 hover:bg-white transition-colors shrink-0"
+          >
+            <ChevronRight size={24} className="rotate-180" />
+          </button>
+          <h2 className="text-2xl sm:text-3xl font-bold uppercase tracking-tight break-words min-w-0">Review / {gallery.title}</h2>
+        </div>
+        <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
           <button
             onClick={handleExportFilenames}
-            className="px-8 py-4 bg-white border border-gray-200 text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-gray-50"
+            className="px-8 py-4 bg-white border border-gray-200 text-[10px] font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-gray-50"
           >
             <Download size={18} /> Export Filenames
           </button>
           <button
             onClick={() => handleExportZip(favorites.length > 0 ? 'zip_selected' : 'zip_all')}
             disabled={exporting}
-            className="px-8 py-4 bg-black text-white text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-3 disabled:opacity-50"
+            className="px-8 py-4 bg-black text-white text-[10px] font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 disabled:opacity-50"
           >
             {exporting ? <Loader2 size={18} className="animate-spin" /> : <Download size={18} />}
             {favorites.length > 0 ? 'Export Selected ZIP' : 'Export All ZIP'}
@@ -144,17 +145,17 @@ export function ProofingView({ gallery, photos, favorites, submissions, exports,
       )}
 
       <div className="bg-white border border-gray-100 overflow-hidden">
-        <div className="p-10 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+        <div className="p-6 sm:p-8 md:p-10 border-b border-gray-100 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between bg-gray-50/50">
           <div>
             <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 mb-2">Selected Assets</h3>
             <p className="text-xl font-bold uppercase tracking-tight">{favorites.length} Verified Selections</p>
           </div>
-          <div className="px-4 py-2 bg-black text-white text-[9px] font-black uppercase tracking-[0.2em]">
+          <div className="self-start sm:self-auto px-4 py-2 bg-black text-white text-[9px] font-black uppercase tracking-[0.2em]">
             {submissions.length > 0 ? 'Client Submitted' : 'Client Review Active'}
           </div>
         </div>
 
-        <div className="p-10">
+        <div className="p-6 sm:p-8 md:p-10">
           {favoritePhotos.length > 0 ? (
             <GalleryGrid
               photos={favoritePhotos}
@@ -172,13 +173,13 @@ export function ProofingView({ gallery, photos, favorites, submissions, exports,
 
       {exports.length > 0 && (
         <div className="mt-12 bg-white border border-gray-100">
-          <div className="p-10 border-b border-gray-100 bg-gray-50/50">
+          <div className="p-6 sm:p-8 md:p-10 border-b border-gray-100 bg-gray-50/50">
             <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Archive Exports</h3>
           </div>
           <ul className="divide-y divide-gray-100">
             {exports.map((exp) => (
-              <li key={exp.id} className="px-10 py-5 flex items-center justify-between">
-                <div>
+              <li key={exp.id} className="px-6 sm:px-8 md:px-10 py-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="min-w-0">
                   <p className="text-[11px] font-bold uppercase tracking-widest text-gray-900">
                     {exp.type === 'zip_selected' ? 'Selected photos' : 'All photos'}
                   </p>
@@ -189,12 +190,12 @@ export function ProofingView({ gallery, photos, favorites, submissions, exports,
                 {exp.status === 'ready' && exp.zip_key ? (
                   <a
                     href={`/api/signed-urls?key=${encodeURIComponent(exp.zip_key)}&bucket=exports`}
-                    className="px-6 py-3 bg-black text-white text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2"
+                    className="self-start sm:self-auto shrink-0 px-6 py-3 bg-black text-white text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2"
                   >
                     <Download size={14} /> Download
                   </a>
                 ) : (
-                  <span className={`text-[10px] font-black uppercase tracking-[0.2em] ${exp.status === 'failed' ? 'text-red-500' : 'text-orange-500'}`}>
+                  <span className={`self-start sm:self-auto shrink-0 text-[10px] font-black uppercase tracking-[0.2em] ${exp.status === 'failed' ? 'text-red-500' : 'text-orange-500'}`}>
                     {exp.status}
                   </span>
                 )}

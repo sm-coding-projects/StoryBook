@@ -76,7 +76,7 @@ function AcceptInviteContent() {
       {status === 'error' && (
         <div className="flex flex-col items-center gap-4">
           <XCircle size={32} className="text-red-500" />
-          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-red-500">
+          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-red-500 break-words">
             {error}
           </p>
           <button
@@ -93,16 +93,16 @@ function AcceptInviteContent() {
           <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 mb-4">
             Please sign in to accept this invitation
           </p>
-          <div className="flex gap-4">
+          <div className="flex w-full flex-col gap-4 sm:flex-row sm:w-auto">
             <button
               onClick={() => router.push(`/auth/login?redirect=/invite/accept?token=${token}`)}
-              className="px-6 py-3 bg-black text-white text-xs font-bold uppercase tracking-widest"
+              className="w-full sm:w-auto px-6 py-3 bg-black text-white text-xs font-bold uppercase tracking-widest"
             >
               Sign In
             </button>
             <button
               onClick={() => router.push(`/auth/signup?redirect=/invite/accept?token=${token}`)}
-              className="px-6 py-3 bg-white border border-gray-200 text-xs font-bold uppercase tracking-widest"
+              className="w-full sm:w-auto px-6 py-3 bg-white border border-gray-200 text-xs font-bold uppercase tracking-widest"
             >
               Sign Up
             </button>
@@ -115,8 +115,8 @@ function AcceptInviteContent() {
 
 export default function AcceptInvitePage() {
   return (
-    <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center">
-      <div className="text-center">
+    <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center p-6 sm:p-8">
+      <div className="w-full max-w-md text-center">
         <div className="text-xl font-bold tracking-[-0.04em] uppercase mb-8">StoryBook</div>
         <Suspense
           fallback={

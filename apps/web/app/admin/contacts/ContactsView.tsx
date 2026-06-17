@@ -13,12 +13,12 @@ export function ContactsView({ contacts }: { contacts: ContactRow[] }) {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <header className="flex justify-between items-end mb-16 border-b border-gray-200 pb-8">
+      <header className="flex flex-col gap-6 sm:flex-row sm:justify-between sm:items-end mb-10 md:mb-16 border-b border-gray-200 pb-8">
         <div>
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 uppercase">Contacts</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 uppercase">Contacts</h1>
           <p className="text-gray-500 text-xs uppercase tracking-[0.2em] mt-2">Manage your client relationships</p>
         </div>
-        <div className="flex gap-10 text-right">
+        <div className="flex gap-10 sm:text-right">
           <div>
             <p className="text-3xl font-bold">{contacts.length}</p>
             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Clients</p>
@@ -45,24 +45,24 @@ export function ContactsView({ contacts }: { contacts: ContactRow[] }) {
             <div key={contact.email}>
               <button
                 onClick={() => setExpanded(expanded === contact.email ? null : contact.email)}
-                className="w-full px-8 py-6 flex items-center justify-between hover:bg-gray-50/50 transition-colors text-left"
+                className="w-full px-4 sm:px-8 py-6 flex items-center justify-between gap-3 hover:bg-gray-50/50 transition-colors text-left"
               >
-                <div className="flex items-center gap-4">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                <div className="flex items-center gap-4 min-w-0">
+                  <div className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
                     contact.hasAccepted ? 'bg-black text-white' : 'bg-gray-100 text-gray-400'
                   }`}>
                     {contact.hasAccepted ? <UserCheck size={16} /> : <Clock size={16} />}
                   </div>
-                  <div>
-                    <p className="text-sm font-bold text-gray-900">{contact.email}</p>
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold text-gray-900 truncate">{contact.email}</p>
                     <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-0.5">
                       {contact.invites.length} {contact.invites.length === 1 ? 'gallery' : 'galleries'}
                       {' · '}since {new Date(contact.firstInvitedAt).toLocaleDateString()}
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
-                  <span className={`px-3 py-1 text-[9px] font-black uppercase tracking-widest ${
+                <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+                  <span className={`px-3 py-1 text-[9px] font-black uppercase tracking-widest whitespace-nowrap ${
                     contact.hasAccepted ? 'bg-green-50 text-green-600' : 'bg-yellow-50 text-yellow-600'
                   }`}>
                     {contact.hasAccepted ? 'Active' : 'Invited'}
@@ -75,17 +75,17 @@ export function ContactsView({ contacts }: { contacts: ContactRow[] }) {
               </button>
 
               {expanded === contact.email && (
-                <div className="px-8 pb-6 pl-[88px]">
+                <div className="px-4 sm:px-8 pb-6 sm:pl-[88px]">
                   <ul className="space-y-2">
                     {contact.invites.map((inv, i) => (
-                      <li key={i} className="flex items-center justify-between text-[11px]">
+                      <li key={i} className="flex items-center justify-between gap-3 text-[11px]">
                         <button
                           onClick={() => router.push(`/admin/editor/${inv.galleryId}`)}
-                          className="font-bold uppercase tracking-widest text-gray-600 hover:text-black flex items-center gap-2"
+                          className="font-bold uppercase tracking-widest text-gray-600 hover:text-black flex items-center gap-2 min-w-0"
                         >
-                          <Mail size={12} /> {inv.galleryTitle}
+                          <Mail size={12} className="shrink-0" /> <span className="truncate">{inv.galleryTitle}</span>
                         </button>
-                        <span className={`font-black uppercase tracking-wider text-[9px] px-2 py-1 ${
+                        <span className={`shrink-0 font-black uppercase tracking-wider text-[9px] px-2 py-1 whitespace-nowrap ${
                           inv.status === 'accepted' ? 'bg-green-50 text-green-600' :
                           inv.status === 'pending' ? 'bg-yellow-50 text-yellow-600' :
                           'bg-gray-50 text-gray-400'

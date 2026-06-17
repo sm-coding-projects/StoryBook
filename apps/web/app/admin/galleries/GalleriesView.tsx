@@ -45,20 +45,20 @@ export function GalleriesView({ galleries }: GalleriesViewProps) {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <header className="flex justify-between items-end mb-16 border-b border-gray-200 pb-8">
+      <header className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-end mb-8 sm:mb-12 md:mb-16 border-b border-gray-200 pb-8">
         <div>
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 uppercase">Collections</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 uppercase">Collections</h1>
           <p className="text-gray-500 text-xs uppercase tracking-[0.2em] mt-2">Manage your visual archives</p>
         </div>
         <button
           onClick={() => setIsCreating(true)}
-          className="bg-black text-white px-8 py-4 rounded-none flex items-center gap-2 hover:bg-black/90 transition-colors shadow-sm text-xs font-bold uppercase tracking-widest"
+          className="bg-black text-white px-8 py-4 rounded-none flex items-center justify-center gap-2 hover:bg-black/90 transition-colors shadow-sm text-xs font-bold uppercase tracking-widest w-full sm:w-auto"
         >
           <Plus size={18} /> New Collection
         </button>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
         {galleries.map(gallery => (
           <motion.div
             layoutId={gallery.id}
@@ -100,7 +100,7 @@ export function GalleriesView({ galleries }: GalleriesViewProps) {
           </p>
           <button
             onClick={() => setIsCreating(true)}
-            className="bg-black text-white px-8 py-4 rounded-none flex items-center gap-2 hover:bg-black/90 transition-colors text-xs font-bold uppercase tracking-widest mx-auto"
+            className="bg-black text-white px-6 sm:px-8 py-4 rounded-none flex flex-wrap items-center justify-center gap-2 hover:bg-black/90 transition-colors text-xs font-bold uppercase tracking-widest mx-auto w-full sm:w-auto max-w-full"
           >
             <Plus size={18} /> Create Your First Collection
           </button>

@@ -96,16 +96,17 @@ export function EditorView({ gallery, photos, invitations }: EditorViewProps) {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <div className="flex items-center gap-6 mb-12 border-b border-gray-200 pb-8">
-        <button
-          onClick={() => router.push('/admin/galleries')}
-          className="p-2 hover:bg-white rounded-none transition-colors"
-        >
-          <ChevronRight size={24} className="rotate-180" />
-        </button>
-        <h2 className="text-3xl font-bold uppercase tracking-tight">{gallery.title}</h2>
-        <div className="flex-1" />
-        <div className="flex gap-4">
+      <div className="flex flex-col gap-4 mb-8 sm:mb-12 border-b border-gray-200 pb-6 sm:pb-8 sm:flex-row sm:items-center sm:gap-6">
+        <div className="flex items-center gap-4 min-w-0 sm:gap-6 sm:flex-1">
+          <button
+            onClick={() => router.push('/admin/galleries')}
+            className="p-2 hover:bg-white rounded-none transition-colors shrink-0"
+          >
+            <ChevronRight size={24} className="rotate-180" />
+          </button>
+          <h2 className="text-2xl sm:text-3xl font-bold uppercase tracking-tight truncate">{gallery.title}</h2>
+        </div>
+        <div className="flex flex-wrap gap-3 sm:gap-4">
           <button
             onClick={() => router.push(`/gallery/${gallery.id}`)}
             className="px-6 py-3 bg-white border border-gray-200 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-gray-50"
@@ -121,20 +122,20 @@ export function EditorView({ gallery, photos, invitations }: EditorViewProps) {
         </div>
       </div>
 
-      <div className="grid grid-cols-12 gap-12">
-        <div className="col-span-8 space-y-12">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
+        <div className="space-y-8 lg:col-span-8 lg:space-y-12 min-w-0">
           <section>
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xs font-black uppercase tracking-[0.3em] text-gray-400">01 / Assets</h3>
             </div>
-            <div className="bg-white p-8 border border-gray-100">
+            <div className="bg-white p-5 sm:p-8 border border-gray-100">
               <UploadZone galleryId={gallery.id} onComplete={() => router.refresh()} />
             </div>
           </section>
 
           <section>
             <h3 className="text-xs font-black uppercase tracking-[0.3em] text-gray-400 mb-6">02 / Grid View</h3>
-            <div className="bg-white p-8 border border-gray-100">
+            <div className="bg-white p-5 sm:p-8 border border-gray-100">
               <GalleryGrid
                 photos={uiPhotos}
                 favorites={new Set()}
@@ -145,8 +146,8 @@ export function EditorView({ gallery, photos, invitations }: EditorViewProps) {
           </section>
         </div>
 
-        <div className="col-span-4 space-y-12">
-          <section className="bg-white p-8 border border-gray-100">
+        <div className="space-y-8 lg:col-span-4 lg:space-y-12 min-w-0">
+          <section className="bg-white p-5 sm:p-8 border border-gray-100">
             <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 mb-6">Configuration</h3>
             <div className="space-y-6">
               <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-widest">
@@ -178,13 +179,13 @@ export function EditorView({ gallery, photos, invitations }: EditorViewProps) {
             </p>
           </section>
 
-          <section className="bg-black text-white p-8">
+          <section className="bg-black text-white p-5 sm:p-8">
             <div className="flex items-center gap-3 mb-6">
-              <ExternalLink size={18} />
+              <ExternalLink size={18} className="shrink-0" />
               <h3 className="text-[10px] font-black uppercase tracking-[0.3em]">Direct Access</h3>
             </div>
-            <div className="bg-white/5 p-4 mb-6">
-              <code className="text-[10px] text-white/50 break-all font-mono">
+            <div className="bg-white/5 p-4 mb-6 min-w-0">
+              <code className="block text-[10px] text-white/50 break-all font-mono">
                 {typeof window !== 'undefined' ? window.location.origin : ''}/gallery/{gallery.id}
               </code>
             </div>
@@ -199,9 +200,9 @@ export function EditorView({ gallery, photos, invitations }: EditorViewProps) {
           </section>
 
           {/* Invite Clients */}
-          <section className="bg-white p-8 border border-gray-100">
+          <section className="bg-white p-5 sm:p-8 border border-gray-100">
             <div className="flex items-center gap-3 mb-6">
-              <Mail size={18} />
+              <Mail size={18} className="shrink-0" />
               <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Invite Client</h3>
             </div>
             <div className="flex gap-2">
@@ -210,12 +211,12 @@ export function EditorView({ gallery, photos, invitations }: EditorViewProps) {
                 value={inviteEmail}
                 onChange={(e) => setInviteEmail(e.target.value)}
                 placeholder="client@email.com"
-                className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 text-sm outline-none focus:ring-2 focus:ring-black"
+                className="flex-1 min-w-0 px-4 py-3 bg-gray-50 border border-gray-200 text-sm outline-none focus:ring-2 focus:ring-black"
               />
               <button
                 onClick={handleInvite}
                 disabled={inviting || !inviteEmail}
-                className="px-4 py-3 bg-black text-white text-[10px] font-black uppercase tracking-widest disabled:opacity-50"
+                className="shrink-0 px-4 py-3 bg-black text-white text-[10px] font-black uppercase tracking-widest disabled:opacity-50"
               >
                 {inviting ? '...' : 'Send'}
               </button>
@@ -234,11 +235,11 @@ export function EditorView({ gallery, photos, invitations }: EditorViewProps) {
                     readOnly
                     value={inviteLink}
                     onFocus={(e) => e.target.select()}
-                    className="flex-1 px-2 py-2 bg-white border border-gray-200 text-[11px] text-gray-700 outline-none"
+                    className="flex-1 min-w-0 px-2 py-2 bg-white border border-gray-200 text-[11px] text-gray-700 outline-none"
                   />
                   <button
                     onClick={() => navigator.clipboard.writeText(inviteLink)}
-                    className="px-3 py-2 bg-black text-white text-[9px] font-black uppercase tracking-widest"
+                    className="shrink-0 px-3 py-2 bg-black text-white text-[9px] font-black uppercase tracking-widest"
                   >
                     Copy
                   </button>

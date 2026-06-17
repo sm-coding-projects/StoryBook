@@ -72,34 +72,34 @@ export function SettingsView({ email, profile, usage }: SettingsViewProps) {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <header className="flex justify-between items-end mb-16 border-b border-gray-200 pb-8">
+      <header className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-end mb-8 sm:mb-16 border-b border-gray-200 pb-6 sm:pb-8">
         <div>
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 uppercase">Settings</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 uppercase">Settings</h1>
           <p className="text-gray-500 text-xs uppercase tracking-[0.2em] mt-2">Studio configuration</p>
         </div>
       </header>
 
-      <div className="grid grid-cols-12 gap-12">
-        <div className="col-span-7 space-y-12">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <div className="lg:col-span-7 space-y-8 lg:space-y-12">
           {/* Studio profile */}
-          <section className="bg-white p-8 border border-gray-100">
+          <section className="bg-white p-6 sm:p-8 border border-gray-100">
             <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 mb-6">Studio Profile</h3>
             <div className="space-y-6">
               <div>
                 <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">
                   Studio Name
                 </label>
-                <div className="flex gap-2">
+                <div className="flex flex-col gap-2 sm:flex-row">
                   <input
                     value={studioName}
                     onChange={(e) => setStudioName(e.target.value)}
                     placeholder="Your Studio Name"
-                    className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 text-sm outline-none focus:ring-2 focus:ring-black"
+                    className="w-full sm:flex-1 px-4 py-3 bg-gray-50 border border-gray-200 text-sm outline-none focus:ring-2 focus:ring-black"
                   />
                   <button
                     onClick={handleSaveName}
                     disabled={savingName || !studioName.trim()}
-                    className="px-6 py-3 bg-black text-white text-[10px] font-black uppercase tracking-widest flex items-center gap-2 disabled:opacity-50"
+                    className="px-6 py-3 bg-black text-white text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2 disabled:opacity-50"
                   >
                     <Save size={14} /> {savingName ? '...' : 'Save'}
                   </button>
@@ -110,10 +110,10 @@ export function SettingsView({ email, profile, usage }: SettingsViewProps) {
                   </p>
                 )}
               </div>
-              <div className="grid grid-cols-2 gap-6 pt-4 border-t border-gray-100">
-                <div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-gray-100">
+                <div className="min-w-0">
                   <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-1">Email</p>
-                  <p className="text-sm font-bold text-gray-900">{email}</p>
+                  <p className="text-sm font-bold text-gray-900 break-words">{email}</p>
                 </div>
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-1">Role</p>
@@ -124,7 +124,7 @@ export function SettingsView({ email, profile, usage }: SettingsViewProps) {
           </section>
 
           {/* Password */}
-          <section className="bg-white p-8 border border-gray-100">
+          <section className="bg-white p-6 sm:p-8 border border-gray-100">
             <div className="flex items-center gap-3 mb-6">
               <KeyRound size={16} />
               <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Change Password</h3>
@@ -161,8 +161,8 @@ export function SettingsView({ email, profile, usage }: SettingsViewProps) {
         </div>
 
         {/* Storage */}
-        <div className="col-span-5">
-          <section className="bg-black text-white p-8">
+        <div className="lg:col-span-5">
+          <section className="bg-black text-white p-6 sm:p-8">
             <div className="flex items-center gap-3 mb-8">
               <HardDrive size={16} />
               <h3 className="text-[10px] font-black uppercase tracking-[0.3em]">Storage</h3>
@@ -176,8 +176,8 @@ export function SettingsView({ email, profile, usage }: SettingsViewProps) {
             {usage.length > 0 && (
               <ul className="space-y-3 border-t border-white/10 pt-6">
                 {usage.map((g) => (
-                  <li key={g.galleryId} className="flex items-center justify-between text-[11px]">
-                    <span className="font-bold uppercase tracking-widest text-white/70 truncate pr-4">{g.title}</span>
+                  <li key={g.galleryId} className="flex items-center justify-between gap-2 text-[11px]">
+                    <span className="min-w-0 font-bold uppercase tracking-widest text-white/70 truncate">{g.title}</span>
                     <span className="font-black text-white/50 whitespace-nowrap">
                       {g.photoCount} · {formatBytes(g.bytes)}
                     </span>

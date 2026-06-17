@@ -72,7 +72,7 @@ export default function SignupPage() {
         </svg>
       </div>
 
-      <div className="relative z-10 w-full max-w-md px-8">
+      <div className="relative z-10 w-full max-w-md px-5 sm:px-8">
         <div className="mb-12 text-center">
           <Link href="/" className="text-xl font-bold tracking-[-0.04em] uppercase">
             StoryBook

@@ -12,24 +12,24 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ currentView, setView, favoritesCount }) => {
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-[#E5E5E5]">
-      <div className="max-w-[1440px] mx-auto px-8">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo/Brand */}
           <div
-            className="flex items-center cursor-pointer group"
+            className="flex items-center min-w-0 cursor-pointer group"
             onClick={() => setView('home' as 'home' | 'gallery' | 'favorites')}
           >
             <span className="text-sm font-black tracking-[-0.04em] uppercase text-black group-hover:opacity-60 transition-opacity">
               StoryBook
             </span>
-            <div className="h-4 w-[1px] bg-[#E5E5E5] mx-4" />
-            <span className="text-[10px] tracking-[0.2em] text-[#999] uppercase font-bold">
+            <div className="h-4 w-[1px] bg-[#E5E5E5] mx-4 hidden sm:block" />
+            <span className="text-[10px] tracking-[0.2em] text-[#999] uppercase font-bold hidden sm:block">
               Gallery Access
             </span>
           </div>
 
           {/* Navigation */}
-          <nav className="flex items-center space-x-8">
+          <nav className="flex items-center space-x-4 sm:space-x-8 shrink-0">
             <button
               onClick={() => setView('gallery')}
               className={`text-[10px] font-black uppercase tracking-[0.2em] transition-all flex items-center gap-2 ${

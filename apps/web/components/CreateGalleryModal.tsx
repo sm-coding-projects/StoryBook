@@ -40,14 +40,14 @@ export const CreateGalleryModal: React.FC<CreateGalleryModalProps> = ({ onClose,
         animate={{ scale: 1, opacity: 1 }}
         className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden"
       >
-        <div className="px-8 py-6 border-b border-gray-100 flex justify-between items-center">
+        <div className="px-5 py-5 sm:px-8 sm:py-6 border-b border-gray-100 flex justify-between items-center">
           <h2 className="text-xl font-medium text-gray-900">Create New Gallery</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
             <X size={24} />
           </button>
         </div>
 
-        <div className="p-8 space-y-8 max-h-[70vh] overflow-y-auto">
+        <div className="p-5 sm:p-8 space-y-6 sm:space-y-8 max-h-[70vh] overflow-y-auto">
           {/* Basic Info */}
           <section className="space-y-4">
             <label className="block">
@@ -67,12 +67,12 @@ export const CreateGalleryModal: React.FC<CreateGalleryModalProps> = ({ onClose,
             <h3 className="text-sm font-semibold text-gray-900 flex items-center gap-2">
               <Lock size={16} /> Privacy Mode
             </h3>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
               {(['public', 'unlisted', 'password'] as const).map((mode) => (
                 <button
                   key={mode}
                   onClick={() => setSettings({...settings, privacy: mode})}
-                  className={`px-4 py-3 rounded-xl border text-sm capitalize transition-all ${
+                  className={`px-2 py-3 sm:px-4 rounded-xl border text-sm capitalize transition-all ${
                     settings.privacy === mode
                       ? 'bg-black text-white border-black'
                       : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300'
@@ -120,17 +120,17 @@ export const CreateGalleryModal: React.FC<CreateGalleryModalProps> = ({ onClose,
           </section>
         </div>
 
-        <div className="px-8 py-6 bg-gray-50 flex justify-end gap-4">
+        <div className="px-5 py-5 sm:px-8 sm:py-6 bg-gray-50 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end sm:gap-4">
           <button
             onClick={onClose}
-            className="px-6 py-3 text-sm font-medium text-gray-600 hover:text-gray-900"
+            className="w-full sm:w-auto px-6 py-3 text-sm font-medium text-gray-600 hover:text-gray-900"
           >
             Cancel
           </button>
           <button
             onClick={() => onCreate(settings)}
             disabled={!settings.title}
-            className="px-8 py-3 bg-black text-white rounded-xl text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-800 transition-colors"
+            className="w-full sm:w-auto px-8 py-3 bg-black text-white rounded-xl text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-800 transition-colors"
           >
             Create Gallery
           </button>
