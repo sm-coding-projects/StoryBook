@@ -141,7 +141,7 @@ export function Slideshow() {
 
         {/* Bottom bar */}
         <div className="px-6 py-4 bg-gradient-to-t from-black/60 to-transparent">
-          <p className="text-white/70 text-sm text-center">
+          <p className="text-white/70 text-sm text-center truncate">
             {currentPhoto.filename}
           </p>
         </div>

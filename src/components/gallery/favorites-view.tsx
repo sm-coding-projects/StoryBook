@@ -21,14 +21,14 @@ export function FavoritesView({ photos, onClose, onShare }: FavoritesViewProps) 
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Heart className="w-5 h-5 fill-red-500 text-red-500" />
-          <h2 className="text-xl font-medium text-neutral-900">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex min-w-0 items-center gap-3">
+          <Heart className="w-5 h-5 fill-red-500 text-red-500 shrink-0" />
+          <h2 className="text-xl font-medium text-neutral-900 truncate">
             Favorites ({favoritePhotos.length})
           </h2>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {onShare && favoritePhotos.length > 0 && (
             <button
               onClick={onShare}

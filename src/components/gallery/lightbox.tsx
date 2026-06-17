@@ -163,11 +163,11 @@ export function Lightbox({ onDownload, onShare }: LightboxProps) {
       </div>
 
       {/* Bottom bar */}
-      <div className="flex items-center justify-between px-4 py-3 text-white/80">
-        <span className="text-sm truncate max-w-[200px]">
+      <div className="flex items-center justify-between gap-2 px-4 py-3 text-white/80">
+        <span className="text-sm truncate min-w-0 flex-1 sm:flex-initial sm:max-w-[200px]">
           {currentPhoto.filename}
         </span>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 shrink-0">
           <button
             onClick={() => toggleFavorite(currentPhoto.id)}
             className="p-2 rounded-full hover:bg-white/10 transition-colors"

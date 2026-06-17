@@ -83,7 +83,7 @@ export default function RegisterPage() {
       </div>
 
       {/* Right panel - form */}
-      <div className="flex flex-1 items-center justify-center p-8">
+      <div className="flex flex-1 items-center justify-center p-4 sm:p-8">
         <div className="w-full max-w-sm space-y-8">
           <div className="lg:hidden flex items-center gap-2 justify-center mb-4">
             <Camera className="size-6" strokeWidth={1.5} />

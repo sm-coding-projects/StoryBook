@@ -82,9 +82,9 @@ export default function SharePage() {
       {/* Copy link section */}
       <div className="space-y-3 mb-8">
         <Label>Gallery link</Label>
-        <div className="flex gap-2">
-          <Input readOnly value={galleryUrl} className="font-mono text-sm" />
-          <Button variant="outline" onClick={copyLink}>
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <Input readOnly value={galleryUrl} className="font-mono text-sm min-w-0" />
+          <Button variant="outline" onClick={copyLink} className="w-full sm:w-auto">
             {copied ? (
               <Check className="size-4 mr-2" />
             ) : (

@@ -190,14 +190,15 @@ export default function CollectionSettingsPage() {
         </TabsContent>
 
         <TabsContent value="privacy" className="space-y-6">
-          <div className="flex items-center justify-between">
-            <div>
+          <div className="flex items-center justify-between gap-4">
+            <div className="min-w-0">
               <Label>Published</Label>
               <p className="text-sm text-muted-foreground">
                 Make this gallery accessible via its public link.
               </p>
             </div>
             <Switch
+              className="shrink-0"
               checked={isPublished}
               onCheckedChange={(checked) => {
                 setIsPublished(checked);
@@ -222,9 +223,11 @@ export default function CollectionSettingsPage() {
                 placeholder="Leave empty to disable"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                className="min-w-0 flex-1"
               />
               <Button
                 variant="outline"
+                className="shrink-0"
                 onClick={() => updateMutation.mutate({ password: password || null })}
                 disabled={updateMutation.isPending}
               >

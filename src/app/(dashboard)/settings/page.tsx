@@ -96,7 +96,7 @@ export default function SettingsPage() {
     : "U";
 
   return (
-    <div className="p-6 lg:p-8 max-w-2xl mx-auto">
+    <div className="p-4 sm:p-6 lg:p-8 max-w-2xl mx-auto">
       <h1 className="text-2xl font-semibold tracking-tight mb-8">Account Settings</h1>
 
       <div className="space-y-8">
