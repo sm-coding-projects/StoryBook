@@ -2,7 +2,9 @@
 
 **A beautiful client gallery platform for photographers.**
 
-<!-- ![StoryBook Screenshot](screenshot.png) -->
+Create gorgeous, shareable photo galleries for your clients — with proofing (favorites), downloads, full-screen slideshows, and password protection. Inspired by Pixieset Client Gallery.
+
+![StoryBook sign-in](docs/screenshots/login.png)
 
 ## Features
 
@@ -16,6 +18,20 @@
 - **Photographer branding** — Custom logo, colors, and fonts per gallery
 - **Email sharing** — Send gallery links directly to clients via email
 - **Mobile-optimized** — Fully responsive design for all devices
+
+## Screenshots
+
+> Captured from the running app. Dashboard, collection editor, and client-gallery views will be added here as demo data is populated.
+
+**Create an account**
+
+![Create an account](docs/screenshots/register.png)
+
+### Responsive on every device
+
+The desktop two-panel layout collapses to a clean, single-column flow on mobile — no overlapping text, boxes, or buttons.
+
+<img src="docs/screenshots/login-mobile.png" alt="StoryBook sign-in on mobile" width="320" />
 
 ## Tech Stack
 
