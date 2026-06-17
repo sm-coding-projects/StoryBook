@@ -52,11 +52,11 @@ export function MobileActionSheet({
         </div>
 
         {title && (
-          <div className="flex items-center justify-between px-4 py-2">
-            <h3 className="text-base font-medium">{title}</h3>
+          <div className="flex items-center justify-between gap-2 px-4 py-2">
+            <h3 className="min-w-0 truncate text-base font-medium">{title}</h3>
             <button
               onClick={onClose}
-              className="p-1.5 rounded-full hover:bg-neutral-100"
+              className="shrink-0 p-1.5 rounded-full hover:bg-neutral-100"
             >
               <X className="w-4 h-4" />
             </button>

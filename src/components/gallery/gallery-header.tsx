@@ -37,7 +37,7 @@ export function GalleryHeader({
         <p className="text-sm text-neutral-400 mt-1">{photoCount} photos</p>
       </div>
 
-      <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-neutral-100 pb-3">
         <div className="flex items-center gap-2">
           <button
             onClick={() => setViewMode("masonry")}

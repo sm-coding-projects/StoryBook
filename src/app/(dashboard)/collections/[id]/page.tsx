@@ -230,9 +230,9 @@ export default function CollectionDetailPage() {
           Back to collections
         </Link>
 
-        <div className="flex items-start justify-between">
-          <div>
-            <div className="flex items-center gap-3 mb-1">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-3 mb-1">
               <h1 className="text-2xl font-semibold tracking-tight">
                 {gallery.name}
               </h1>
@@ -244,15 +244,15 @@ export default function CollectionDetailPage() {
               <p className="text-muted-foreground text-sm">{gallery.description}</p>
             )}
           </div>
-          <div className="flex gap-2">
-            <Link href={`/collections/${id}/share`}>
-              <Button variant="outline" size="sm">
+          <div className="flex gap-2 shrink-0">
+            <Link href={`/collections/${id}/share`} className="flex-1 sm:flex-initial">
+              <Button variant="outline" size="sm" className="w-full sm:w-auto">
                 <Share2 className="size-4 mr-2" />
                 Share
               </Button>
             </Link>
-            <Link href={`/collections/${id}/settings`}>
-              <Button variant="outline" size="sm">
+            <Link href={`/collections/${id}/settings`} className="flex-1 sm:flex-initial">
+              <Button variant="outline" size="sm" className="w-full sm:w-auto">
                 <Settings className="size-4 mr-2" />
                 Settings
               </Button>
@@ -282,7 +282,7 @@ export default function CollectionDetailPage() {
 
       {/* Bulk actions */}
       {selectedPhotos.size > 0 && (
-        <div className="mb-4 flex items-center gap-3 p-3 rounded-lg border bg-muted/50">
+        <div className="mb-4 flex flex-wrap items-center gap-3 p-3 rounded-lg border bg-muted/50">
           <span className="text-sm font-medium">
             {selectedPhotos.size} selected
           </span>
@@ -306,10 +306,10 @@ export default function CollectionDetailPage() {
 
       {/* Content */}
       <Tabs defaultValue="all" className="space-y-6">
-        <TabsList>
-          <TabsTrigger value="all">All Photos ({allPhotos.length})</TabsTrigger>
+        <TabsList className="w-full max-w-full justify-start overflow-x-auto sm:w-auto">
+          <TabsTrigger value="all" className="shrink-0">All Photos ({allPhotos.length})</TabsTrigger>
           {gallery.collections.map((col) => (
-            <TabsTrigger key={col.id} value={col.id}>
+            <TabsTrigger key={col.id} value={col.id} className="shrink-0">
               {col.name} ({col.photos.length})
             </TabsTrigger>
           ))}

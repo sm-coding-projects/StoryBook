@@ -38,15 +38,15 @@ export default function DashboardPage() {
 
   return (
     <div className="p-6 lg:p-8 max-w-7xl mx-auto">
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-8">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Collections</h1>
           <p className="text-muted-foreground text-sm mt-1">
             Manage your photo galleries
           </p>
         </div>
-        <Link href="/collections/new">
-          <Button>
+        <Link href="/collections/new" className="w-full sm:w-auto">
+          <Button className="w-full sm:w-auto">
             <Plus className="size-4 mr-2" />
             New Collection
           </Button>

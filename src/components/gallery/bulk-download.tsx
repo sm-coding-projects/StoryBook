@@ -69,7 +69,7 @@ export function BulkDownload({ photos }: BulkDownloadProps) {
   }
 
   return (
-    <div className="flex items-center gap-3 bg-neutral-50 rounded-full px-4 py-2">
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 bg-neutral-50 rounded-2xl sm:rounded-full px-4 py-2">
       <span className="text-sm text-neutral-600">
         {selected.size} selected
       </span>

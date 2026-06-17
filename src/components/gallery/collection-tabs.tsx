@@ -22,7 +22,7 @@ export function CollectionTabs({
       <button
         onClick={() => onSelect(null)}
         className={cn(
-          "px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-colors",
+          "shrink-0 px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-colors",
           activeId === null
             ? "bg-neutral-900 text-white"
             : "text-neutral-600 hover:bg-neutral-100"
@@ -35,7 +35,7 @@ export function CollectionTabs({
           key={col.id}
           onClick={() => onSelect(col.id)}
           className={cn(
-            "px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-colors",
+            "shrink-0 px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-colors",
             activeId === col.id
               ? "bg-neutral-900 text-white"
               : "text-neutral-600 hover:bg-neutral-100"

@@ -61,7 +61,7 @@ function PhotoCard({
         )}
       />
 
-      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-end justify-between p-3 opacity-0 group-hover:opacity-100">
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex flex-wrap items-end justify-between gap-2 p-2 sm:p-3 opacity-0 group-hover:opacity-100">
         <button
           onClick={handleFavorite}
           className="p-2 rounded-full bg-white/90 hover:bg-white transition-colors shadow-sm"
